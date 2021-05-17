@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
+.border-yellow {
+  border: yellow 1px solid;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* Navbar */
+.NavBar {
+  width: 100%;
+  height: 10%;
+  z-index: 100;
+  position: fixed;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background: transparent;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+}
+/* Login Page */
+.authPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+.authCard {
+  margin-top: 5%;
+  width: 40%;
+  height: auto;
+}
+
+/* Home Page */
+.homePage {
+  background: url("https://ippeducation.vn/data/media/2236/images/healthy-eating-ingredients-1296x728-header.jpg")
+    no-repeat;
+  background-size: 100vw 100vh;
+  width: 100vw;
+  height: 100vh;
+}
+
+.btn-green {
+  width: 100%;
+  padding: auto;
+  background-color: yellowgreen;
   color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-red {
+  width: 100%;
+  padding: auto;
+  background-color: red;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-white {
+  width: 8rem;
+  padding: auto;
+  background-color: yellowgreen;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 10px 0 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ProductCard */
+.ProductCard {
+  width: 18rem;
+  height: auto;
 }
