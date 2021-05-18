@@ -8,7 +8,7 @@ const Routes = (props) => {
   return (
     <Switch>
       <PrivateRoute path="/admin" component={AdminLayout} />
-      <Route path="/api/" component={PublicLayout} />
+      <Route path="/" component={PublicLayout} />
     </Switch>
   );
 };
