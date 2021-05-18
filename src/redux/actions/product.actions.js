@@ -4,7 +4,7 @@ import * as types from "../constants/product.constants";
 const getAllProduct = () => async (dispatch) => {
   dispatch({ type: types.PRODUCT_GET_ALL_REQUEST, payload: null });
   try {
-    const res = await api.get("/products");
+    const res = await api.get("/api/products");
     dispatch({
       type: types.PRODUCT_GET_ALL_SUCCESS,
       payload: res.data.data,

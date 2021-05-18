@@ -4,7 +4,7 @@ import * as types from "../constants/user.constants";
 const getCurrentUser = () => async (dispatch) => {
   dispatch({ type: types.USER_GETCURRENT_REQUEST, payload: null });
   try {
-    const res = await api.get("/users/me");
+    const res = await api.get("/api/users/me");
     dispatch({
       type: types.USER_GETCURRENT_SUCCESS,
       payload: res.data.data.user,
@@ -17,7 +17,7 @@ const getCurrentUser = () => async (dispatch) => {
 const topUpBalance = (data) => async (dispatch) => {
   dispatch({ type: types.TOPUP_REQUEST, payload: null });
   try {
-    await api.put("/users/topup", data);
+    await api.put("/api/users/topup", data);
     dispatch({
       type: types.TOPUP_SUCCESS,
       payload: null,
@@ -30,7 +30,7 @@ const topUpBalance = (data) => async (dispatch) => {
 const payOrder = (orderId, total) => async (dispatch) => {
   dispatch({ type: types.PAYORDER_REQUEST, payload: null });
   try {
-    await api.put(`/users/${orderId}/payment`, { total });
+    await api.put(`/api/users/${orderId}/payment`, { total });
     dispatch({
       type: types.PAYORDER_SUCCESS,
       payload: null,

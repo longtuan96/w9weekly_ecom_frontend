@@ -7,7 +7,12 @@ import { routeActions } from "./route.actions";
 const register = (name, email, password, avatarUrl) => async (dispatch) => {
   dispatch({ type: types.REGISTER_REQUEST, payload: null });
   try {
-    const res = await api.post("/users", { name, email, password, avatarUrl });
+    const res = await api.post("/api/users", {
+      name,
+      email,
+      password,
+      avatarUrl,
+    });
     dispatch({ type: types.REGISTER_SUCCESS, payload: res.data.data });
     dispatch(routeActions.redirect("/login"));
     toast.success(`Thank you for your registration, ${name}!`);
@@ -19,7 +24,7 @@ const register = (name, email, password, avatarUrl) => async (dispatch) => {
 const loginRequest = (email, password) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
   try {
-    const res = await api.post("/auth/login", { email, password });
+    const res = await api.post("/api/auth/login", { email, password });
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.data });
     const name = res.data.data.user.name;
     toast.success(`Welcome ${name}`);
@@ -42,7 +47,7 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
     api.defaults.headers.common["authorization"] = bearerToken;
   }
   try {
-    const res = await api.get("/users/me");
+    const res = await api.get("/api/users/me");
     dispatch({ type: types.GET_CURRENT_USER_SUCCESS, payload: res.data.data });
   } catch (error) {
     dispatch({ type: types.GET_CURRENT_USER_FAILURE, payload: error });
