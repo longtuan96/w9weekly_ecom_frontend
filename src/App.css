@@ -38,7 +38,7 @@
 }
 
 .btn-green {
-  width: 100%;
+  width: auto;
   padding: auto;
   background-color: yellowgreen;
   color: white;
@@ -46,10 +46,9 @@
   border: none;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block;
 }
 .btn-red {
-  width: 100%;
+  width: auto;
   padding: auto;
   background-color: red;
   color: white;

@@ -4,7 +4,7 @@ const initialState = {
   user: {},
   totalPageNum: 1,
   selectedUser: {},
-  loading: false,
+  loading: true,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -14,9 +14,25 @@ const userReducer = (state = initialState, action) => {
     case types.USER_GETCURRENT_REQUEST:
       return { ...state, loading: true };
     case types.USER_GETCURRENT_SUCCESS:
-      return { ...state, loading: false, user: payload.currentUser };
+      return { ...state, loading: false, user: payload };
     case types.USER_GETCURRENT_FAILURE:
       console.log("Error in getCurrent User", payload);
+      return { ...state, loading: false };
+
+    case types.TOPUP_REQUEST:
+      return { ...state, loading: true };
+    case types.TOPUP_SUCCESS:
+      return { ...state, loading: false };
+    case types.TOPUP_FAILURE:
+      console.log("Error in topup ", payload);
+      return { ...state, loading: false };
+
+    case types.PAYORDER_REQUEST:
+      return { ...state, loading: true };
+    case types.PAYORDER_SUCCESS:
+      return { ...state, loading: false };
+    case types.PAYORDER_FAILURE:
+      console.log("Error in payment ", payload);
       return { ...state, loading: false };
     default:
       return state;

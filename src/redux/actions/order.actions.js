@@ -2,12 +2,11 @@ import api from "../../api";
 import * as types from "../constants/order.constants";
 import { useSelector } from "react-redux";
 
-const getOrder = (userId) => async (dispatch) => {
+const getOrder = (orderId) => async (dispatch) => {
   dispatch({ type: types.ORDER_GET_REQUEST, payload: null });
 
   try {
-    if (!userId) return console.log("userId is invalid");
-    const res = await api.get(`/orders/${userId}?status=pending`);
+    const res = await api.get(`/orders/${orderId}?status=pending`);
     dispatch({
       type: types.ORDER_GET_SUCCESS,
       payload: res.data.data.order,
@@ -17,16 +16,37 @@ const getOrder = (userId) => async (dispatch) => {
   }
 };
 
-const createOrder = () => async (dispatch) => {};
+// const createOrder = () => async (dispatch) => {
+//   dispatch({ type: types.CREATE_ORDER_REQUEST, payload: null });
+//   try {
+//     await api.post("/orders");
+//     dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: null });
+//   } catch (error) {
+//     dispatch({ type: types.CREATE_ORDER_FAILURE, payload: error.mesage });
+//   }
+// };
 
-const addItemToOrder = () => async (dispatch) => {};
+const AddOrDeleteItemOrder =
+  (productId, orderId, action) => async (dispatch) => {
+    dispatch({ type: types.ORDER_UPDATE_REQUEST, payload: null });
 
-const removeItemToOrder = () => async (dispatch) => {};
+    try {
+      if (action === "add") {
+        await api.put(`/orders/${orderId}`, { product: productId });
+      } else if (action === "delete") {
+        await api.delete(`/orders/${orderId}`, {
+          data: { product: productId },
+        });
+      }
+
+      dispatch({ type: types.ORDER_UPDATE_SUCCESS, payload: null });
+    } catch (error) {
+      dispatch({ type: types.ORDER_UPDATE_FAILURE, payload: error.message });
+    }
+  };
 
 const orderActions = {
+  AddOrDeleteItemOrder,
   getOrder,
-  createOrder,
-  addItemToOrder,
-  removeItemToOrder,
 };
 export default orderActions;

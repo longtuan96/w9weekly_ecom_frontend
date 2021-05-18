@@ -1,9 +1,24 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
+import { useDispatch, useSelector } from "react-redux";
 import notFoundImg from "../images/not-available.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import orderActions from "../redux/actions/order.actions";
+import userActions from "../redux/actions/user.actions";
+
 const ProductCard = (props) => {
+  const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    dispatch(
+      orderActions.AddOrDeleteItemOrder(props.itemId, props.orderId, "add")
+    );
+  };
+  const handleDeleteFromCart = () => {
+    dispatch(
+      orderActions.AddOrDeleteItemOrder(props.itemId, props.orderId, "delete")
+    );
+  };
+
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
@@ -33,8 +48,15 @@ const ProductCard = (props) => {
           />
         </Card.Body>
         <Card.Footer>
-          <button className="btn-green">Add to Cart</button>
-          <button className="btn-red">Minus from Cart</button>
+          {props.place === "contentSection" ? (
+            <button className="btn-green" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
+          ) : (
+            <button className="btn-red" onClick={handleDeleteFromCart}>
+              Minus from Cart
+            </button>
+          )}
         </Card.Footer>
       </Card>
     </div>

@@ -12,6 +12,8 @@ const Order = ({ products, id }) => {
               <Col className="d-flex justify-content-center">
                 <ProductCard
                   key={item._id}
+                  id={item._id}
+                  place={"order"}
                   image={item.image}
                   price={item.price}
                   name={item.name}
